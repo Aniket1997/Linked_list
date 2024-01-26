@@ -217,6 +217,50 @@ class LinkedList{
     // {
 
     // }
+    getLength(){
+        let current = this.head;
+        let count=0;
+        while(current)
+        {
+            current = current.next;
+            count++;
+        }
+        return count;
+    }
+    getMidLinkedList()
+    {
+        //single pointer approch
+        // var len = this.getLength();
+        // console.log("Lenght of the linked list",len);
+        // let ans = Math.floor(len/2);
+        // let count = 0;
+        // let current=this.head;
+        // while(count<ans)
+        // {
+        //     current = current.next;
+        //     count++;
+        // }
+        // return current;
+
+        //2 pointer approch
+        if(this.head === null || this.head.next === null)
+        {
+            return this.head;
+        }
+        if(this.head.next.next === null)
+        {
+            return this.head.next;
+        }
+
+        let slow = this.head;
+        let fast = this.head;
+
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow;
+        }
     printLinkedlist()
     {
         let current = this.head;
@@ -252,4 +296,8 @@ console.log("++++++++++++++++++++++");
 // ll.reverseLinkedList();
 ll.reverseLinkedListRecursive();
 ll.printLinkedlist();
+console.log(ll.getLength());
+ll.insertAtLast(90);
+var mid = ll.getMidLinkedList();
+console.log("Mid of the Linked List",mid);
 console.log("====================");
