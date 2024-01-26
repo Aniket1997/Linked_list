@@ -196,14 +196,14 @@ class LinkedList{
     
     reverse(head, prev, current) {
         // base case
-        if (current === null) {
+        if(current === null)
+        {
             this.head = prev;
             return;
         }
-    
         let forward = current.next;
         current.next = prev;
-        this.reverse(this.head, current, forward);
+        this.reverse(current,forward);
     }
     
     reverseLinkedListRecursive() {
