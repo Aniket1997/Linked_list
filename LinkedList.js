@@ -261,13 +261,10 @@ class LinkedList{
         // If the group doesn't have k nodes, leave it unchanged
         return head;
     }
-
+    reverseSegmentLinkedList(startIndex, endIndex) {
+        
+    }
     
-    
-    // reverseSegmentLinkedList()
-    // {
-
-    // }
     getLength(){
         let current = this.head;
         let count=0;
@@ -311,7 +308,11 @@ class LinkedList{
             slow = slow.next;
         }
         return slow;
-        }
+    }
+
+    //Floyd's Cycle Detection Algorithm to detect in the linked list the cycle is present or not and if present then where it is ?
+
+
     printLinkedlist()
     {
         let current = this.head;
@@ -321,6 +322,13 @@ class LinkedList{
             current = current.next;
         }
     }
+    // printCircularLinkedList() {
+    //     let current = this.head;
+    //     do {
+    //         console.log("Node Data:", current.data);
+    //         current = current.next;
+    //     } while (current !== this.head);
+    // }
 }
 var ll = new LinkedList();
 var ll2 = new LinkedList();
@@ -354,4 +362,11 @@ console.log("====================");
 ll.insertAtLast(90);
 ll.reverseKGroup(2); // Reverse the linked list in groups of 2
 ll.printLinkedlist();
+console.log("++++++++++++++++++++++++++++")
+ll.insertAtLast(50);
+ll.printLinkedlist();
+ll.reverseSegmentLinkedList(1,3);
+//ll.printLinkedlist();
+// ll.head.next.next.next.next = ll.head.next;
+// ll.printCircularLinkedList();
 console.log("++++++++++++++++++++++++++++")
