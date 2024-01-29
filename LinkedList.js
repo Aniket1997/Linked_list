@@ -212,7 +212,58 @@ class LinkedList{
         // this.reverse(this.head, prev, current);
         // return this.head;
         this.head = this.reverse1(this.head);
-    }    
+    }  
+    // reverse in k group 
+    
+    // Add this method to your LinkedList class
+    reverseKGroup(k) {
+        this.head = this.reverseKGroupHelper(this.head, k);
+    }
+
+    // Helper method to reverse k nodes in a group
+    reverseKGroupHelper(head, k) {
+        if (head === null) {
+            return null;
+        }
+
+        let count = 0;
+        let current = head;
+        let prev = null;
+        let next = null;
+
+        // Count the number of nodes in this group
+        let temp = head;
+        while (temp !== null && count < k) {
+            temp = temp.next;
+            count++;
+        }
+
+        // If the group has k nodes, reverse them
+        if (count === k) {
+            count = 0;
+            while (current !== null && count < k) {
+                next = current.next;
+                current.next = prev;
+                prev = current;
+                current = next;
+                count++;
+            }
+
+            // Connect the reversed group to the next reversed group
+            if (next !== null) {
+                head.next = this.reverseKGroupHelper(next, k);
+            }
+
+            // 'prev' is the new head of the reversed group
+            return prev;
+        }
+
+        // If the group doesn't have k nodes, leave it unchanged
+        return head;
+    }
+
+    
+    
     // reverseSegmentLinkedList()
     // {
 
@@ -293,11 +344,14 @@ console.log("++++++++++++++++++++");
 ll.removeSegment(2,4);
 ll.printLinkedlist();
 console.log("++++++++++++++++++++++");
-// ll.reverseLinkedList();
+ll.reverseLinkedList();
 ll.reverseLinkedListRecursive();
 ll.printLinkedlist();
 console.log(ll.getLength());
-ll.insertAtLast(90);
 var mid = ll.getMidLinkedList();
 console.log("Mid of the Linked List",mid);
 console.log("====================");
+ll.insertAtLast(90);
+ll.reverseKGroup(2); // Reverse the linked list in groups of 2
+ll.printLinkedlist();
+console.log("++++++++++++++++++++++++++++")
