@@ -267,7 +267,7 @@ class LinkedList{
         let count = 0;
 
         // Move to the starting node of the sublist
-        while (i < m) {
+        while (count < m) {
             prev = current;
             current = current.next;
             count++;
@@ -295,6 +295,11 @@ class LinkedList{
             // If prev is null, the sublist starts from the head, so update the head
             this.head = rhead;
         }
+    }
+
+    removeDuplicate()
+    {
+        
     }
     getLength(){
         let current = this.head;
