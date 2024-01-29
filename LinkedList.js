@@ -262,6 +262,29 @@ class LinkedList{
         return head;
     }
     reverseSegmentLinkedList(startIndex, endIndex) {
+        console.log("Start & end index to be reverse",startIndex,endIndex);
+        let start,end,prev;
+        let count = 0;
+        let current = this.head;
+        while(count<startIndex)
+        {
+            current = current.next;
+            start = current;
+            count++;
+        }
+        let startRef = start;
+        console.log("Prev",prev);
+        while(count<endIndex)
+        {
+            start = start.next;
+            end = start;
+            count++;
+        }
+        let endRef = end.next;
+        console.log("StartRef",startRef);
+        console.log("endRef",endRef);
+        current = this.head;
+        console.log("current again",current);
         
     }
     
