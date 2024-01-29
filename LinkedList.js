@@ -261,33 +261,41 @@ class LinkedList{
         // If the group doesn't have k nodes, leave it unchanged
         return head;
     }
-    reverseSegmentLinkedList(startIndex, endIndex) {
-        console.log("Start & end index to be reverse",startIndex,endIndex);
-        let start,end,prev;
-        let count = 0;
+    reverseBetween(m, n) {
         let current = this.head;
-        while(count<startIndex)
-        {
+        let prev = null;
+        let count = 0;
+
+        // Move to the starting node of the sublist
+        while (i < m) {
+            prev = current;
             current = current.next;
-            start = current;
             count++;
         }
-        let startRef = start;
-        console.log("Prev",prev);
-        while(count<endIndex)
-        {
-            start = start.next;
-            end = start;
+
+        let rtail = current;
+        let rhead = null;
+
+        // Reverse the sublist from m to n
+        while (count <= n) {
+            let next = current.next;
+            current.next = rhead;
+            rhead = current;
+            current = next;
             count++;
         }
-        let endRef = end.next;
-        console.log("StartRef",startRef);
-        console.log("endRef",endRef);
-        current = this.head;
-        console.log("current again",current);
-        
+
+        // Connect the reversed sublist to the original list
+        rtail.next = current;
+
+        // If prev is not null, it means the sublist starts from a position other than the head
+        if (prev !== null) {
+            prev.next = rhead;
+        } else {
+            // If prev is null, the sublist starts from the head, so update the head
+            this.head = rhead;
+        }
     }
-    
     getLength(){
         let current = this.head;
         let count=0;
@@ -388,8 +396,11 @@ ll.printLinkedlist();
 console.log("++++++++++++++++++++++++++++")
 ll.insertAtLast(50);
 ll.printLinkedlist();
-ll.reverseSegmentLinkedList(1,3);
-//ll.printLinkedlist();
+console.log("++++++++++++++++++++++");
+ll.reverseBetween(2,4);
+ll.printLinkedlist();
+// ll.reverseSegmentLinkedList(1,2);
+// ll.printLinkedlist();
 // ll.head.next.next.next.next = ll.head.next;
 // ll.printCircularLinkedList();
 console.log("++++++++++++++++++++++++++++")
