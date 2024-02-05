@@ -188,10 +188,10 @@ class LinkedList{
             return head;
         }
     
-        let chotahead = this.reverse1(head.next);
+        let rest = this.reverse1(head.next);
         head.next.next = head;  // Corrected assignment
         head.next = null;
-        return chotahead;
+        return rest;
     }     
     
     reverse(head, prev, current) {
