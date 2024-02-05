@@ -307,7 +307,27 @@ class LinkedList{
        }
        
     }
-
+    linearSearchLinkedList(data)
+    {
+        let count = 0;
+        if(data === this.head.data)
+        {
+            return count;
+        }
+        else{
+            let current = this.head;
+            while(current.next !== null)
+            {
+                current = current.next;
+                count++;
+                if(current.data === data)
+                {
+                    return count;
+                }
+            }
+        }
+        return -1;
+    }
     removeDuplicate()
     {
         
@@ -413,6 +433,7 @@ console.log("++++++++++++++++++++++++++++")
 ll.insertAtLast(50);
 ll.printLinkedlist();
 console.log("++++++++++++++++++++++");
-ll.reverseBetween(5,4);
+ll.reverseBetween(2,4);
 ll.printLinkedlist();
+console.log("Search index present in",ll.linearSearchLinkedList(20));
 console.log("++++++++++++++++++++++++++++")
