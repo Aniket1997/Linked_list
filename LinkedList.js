@@ -262,39 +262,50 @@ class LinkedList{
         return head;
     }
     reverseBetween(m, n) {
-        let current = this.head;
-        let prev = null;
-        let count = 0;
 
-        // Move to the starting node of the sublist
-        while (count < m) {
-            prev = current;
-            current = current.next;
-            count++;
-        }
+       if(m>n && m>=this.getLength() && n<= this.getLength())
+       {
+        console.log("Invalid inputs");
+       }
+       else if(this.head === null)
+       {
+         console.log("Empty Linked list");
+       } 
+       else{
+            var current = this.head;
+            var prev = null;
+            let i=0;
 
-        let rtail = current;
-        let rhead = null;
+            while(i<m)
+            {
+                prev = current;
+                current = current.next;
+                i++;
+            }
 
-        // Reverse the sublist from m to n
-        while (count <= n) {
-            let next = current.next;
-            current.next = rhead;
-            rhead = current;
-            current = next;
-            count++;
-        }
+            var rtail = current;
+            var rhead = null;
 
-        // Connect the reversed sublist to the original list
-        rtail.next = current;
+            while(i<=n)
+            {
+                let next = current.next;
+                current.next = rhead;
+                rhead = current;
+                current = next;
+                i++;
+            }
 
-        // If prev is not null, it means the sublist starts from a position other than the head
-        if (prev !== null) {
-            prev.next = rhead;
-        } else {
-            // If prev is null, the sublist starts from the head, so update the head
-            this.head = rhead;
-        }
+            if(prev != null)
+            {
+                prev.next = rhead;
+            }
+            else{
+                this.head = rhead;
+            }
+
+            rtail.next = current;
+       }
+       
     }
 
     removeDuplicate()
@@ -402,10 +413,6 @@ console.log("++++++++++++++++++++++++++++")
 ll.insertAtLast(50);
 ll.printLinkedlist();
 console.log("++++++++++++++++++++++");
-ll.reverseBetween(2,4);
+ll.reverseBetween(5,4);
 ll.printLinkedlist();
-// ll.reverseSegmentLinkedList(1,2);
-// ll.printLinkedlist();
-// ll.head.next.next.next.next = ll.head.next;
-// ll.printCircularLinkedList();
 console.log("++++++++++++++++++++++++++++")
