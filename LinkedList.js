@@ -328,6 +328,38 @@ class LinkedList{
         }
         return -1;
     }
+    binarySearch(data)
+    {
+        let start = this.head;
+        let end = null;
+        let mid = null;
+
+        let current = this.head;
+        while(current.next)
+        {
+            current = current.next;
+        }
+        end = current;
+
+        while( start != end)
+        {
+            mid = this.getMidLinkedList();
+
+            if(mid.data == data)
+            {
+                return mid;
+            }
+            else if(mid < data)
+            {
+                start = mid.next;
+            }
+            else{
+                end = mid;
+            }
+        }
+
+        return null;
+    }
     removeDuplicate()
     {
         
@@ -435,5 +467,7 @@ ll.printLinkedlist();
 console.log("++++++++++++++++++++++");
 ll.reverseBetween(2,4);
 ll.printLinkedlist();
+console.log("++++++++++++++++++++++++++++")
 console.log("Search index present in",ll.linearSearchLinkedList(20));
+//console.log("Search index present in",ll.binarySearch(30));
 console.log("++++++++++++++++++++++++++++")
