@@ -409,8 +409,83 @@ class LinkedList{
         return slow;
     }
 
-    //Floyd's Cycle Detection Algorithm to detect in the linked list the cycle is present or not and if present then where it is ?
-
+    swapBetweenNodes(index1, index2) {
+        var Lenght = this.getLength();
+        if(index1>=Lenght && index2>=Lenght)
+        {
+            console.log("Invalid Indeces");
+        }
+        if (index1 === index2) {
+            console.log("Both indices are the same, so no need to swap");
+            return;
+        }
+    
+        if (index1 > index2) {
+            // Swap indices if index1 is greater than index2
+            [index1, index2] = [index2, index1];
+        }
+    
+        let count = 0;
+        let current = this.head;
+        let prevNode1 = null;
+        let node1 = null;
+        let prevNode2 = null;
+        let node2 = null;
+    
+        // Locate node1 and its previous node
+        while (count < index1) {
+            if (!current) {
+                console.log("Index 1 is out of bounds.");
+                return;
+            }
+            prevNode1 = current;
+            current = current.next;
+            count++;
+        }
+        node1 = current;
+    
+        count = 0;
+        current = this.head;
+    
+        // Locate node2 and its previous node
+        while (count < index2) {
+            if (!current) {
+                console.log("Index 2 is out of bounds.");
+                return;
+            }
+            prevNode2 = current;
+            current = current.next;
+            count++;
+        }
+        node2 = current;
+    
+        // Swap nodes
+        if (prevNode1) {
+            prevNode1.next = node2;
+        } else {
+            this.head = node2;
+        }
+    
+        if (prevNode2) {
+            prevNode2.next = node1;
+        } else {
+            this.head = node1;
+        }
+    
+        let temp = node1.next;
+        
+        // Check if node2 is not the last node
+        if (node2.next !== null) {
+            node1.next = node2.next;
+        } else {
+            node1.next = null; // Ensure node1 is the new last node
+        }
+    
+        node2.next = temp;
+    
+        console.log("Nodes swapped successfully.");
+    }
+    
 
     printLinkedlist()
     {
@@ -470,4 +545,7 @@ ll.printLinkedlist();
 console.log("++++++++++++++++++++++++++++")
 console.log("Search index present in",ll.linearSearchLinkedList(20));
 //console.log("Search index present in",ll.binarySearch(30));
+console.log("++++++++++++++++++++++++++++");
+ll.swapBetweenNodes(5,6);
+ll.printLinkedlist();
 console.log("++++++++++++++++++++++++++++")
