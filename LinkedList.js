@@ -35,6 +35,7 @@ class LinkedList{
             current.next = node;
         }
         this.size++;
+        //this.printLinkedlist();
     }
     insertAtIndex(data,index)
     {
@@ -362,7 +363,23 @@ class LinkedList{
     }
     removeDuplicate()
     {
-        
+        let current = this.head;
+        while(current)
+        {
+            let runner = current;
+            while(runner.next)
+            {
+                if(runner.next.data === current.data)
+                {
+                    runner.next = runner.next.next;
+                }
+                else{
+                    runner = runner.next;
+                }
+            }
+            current = current.next;
+        }
+        return this.head;
     }
     getLength(){
         let current = this.head;
@@ -484,6 +501,7 @@ class LinkedList{
         node2.next = temp;
     
         console.log("Nodes swapped successfully.");
+        this.printLinkedlist();
     }
     
 
@@ -546,6 +564,13 @@ console.log("++++++++++++++++++++++++++++")
 console.log("Search index present in",ll.linearSearchLinkedList(20));
 //console.log("Search index present in",ll.binarySearch(30));
 console.log("++++++++++++++++++++++++++++");
-ll.swapBetweenNodes(5,6);
+ll.swapBetweenNodes(1,3);
+console.log("++++++++++++++++++++++++++++");
+ll.insertAtLast(50);
+ll.insertAtLast(40);
+ll.insertAtLast(90);
+ll.printLinkedlist();
+console.log("++++++++++++++++++++++++++++");
+ll.removeDuplicate();
 ll.printLinkedlist();
 console.log("++++++++++++++++++++++++++++")
